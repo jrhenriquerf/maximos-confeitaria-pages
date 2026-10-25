@@ -104,7 +104,7 @@
       "image": null,
       "priceCents": null,
       "availability": "consultar",
-      "active": true,
+      "active": false,
       "variants": []
     },
     {

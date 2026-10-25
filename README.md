@@ -19,7 +19,7 @@ Abra http://127.0.0.1:4173. O servidor lê `dist/`; após editar dados ou códig
 
 - Identidade em creme, chocolate e terracota, utilizando os dois logos enviados.
 - Dez imagens de produtos fornecidas pela marca, otimizadas em WebP sem alterar a aparência dos doces. Logos com transparência real no cabeçalho, rodapé e indicação de fotografia pendente.
-- Entrada direta no catálogo, com onze produtos. Brownies no Pote de Brigadeiro Branco, Kinder Bueno e Brigadeiro 50% aparecem em cards separados. Tortas de Oreo e Maracujá com Ganache possuem fotos. Somente Brownie com Recheio aguarda fotografia.
+- Entrada direta no catálogo, com dez produtos. Brownies no Pote de Brigadeiro Branco, Kinder Bueno e Brigadeiro 50% aparecem em cards separados. Tortas de Oreo e Maracujá com Ganache possuem fotos. Brownie com Recheio está inativo e não aparece no site.
 - Busca por nome, descrição e sabor; filtros; detalhes em modal com escolha de sabor e quantidade.
 - Sacola persistente no navegador, remoção e quantidades de 1 a 99. Nesta versão, preços e totais ficam ocultos por decisão comercial.
 - WhatsApp (14) 99844-0207 e Instagram @confeitaria.maximos configurados. A mensagem inclui produtos, sabores e quantidades e solicita os valores. Não há envio automático nem confirmação automática de pedido.
