@@ -12,4 +12,13 @@
 .section-heading h1{font-size:46px;line-height:1.2;letter-spacing:-1.1px;margin:0}
 .section-heading h1>span{color:var(--terracotta)}
 .footer-mark{width:70px;height:70px;object-fit:contain}
+.lab-callout{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:36px 6%;border-top:1px solid var(--line)}
+.lab-callout h2{font-size:27px;letter-spacing:-.5px;margin-bottom:10px}
+.lab-callout p{max-width:590px;font-size:12px;line-height:1.9;color:var(--muted)}
+.lab-callout .button{flex-shrink:0;gap:16px;font-size:11px;border-color:var(--gold)}
+.lab-callout .button:hover{background:#eee4d6}
+.site-credit{text-align:center;padding:0 6% 24px;font-size:10px;color:var(--muted)}
+.site-credit a{display:inline-block;padding:10px}
+.site-credit strong{font-weight:500;color:var(--chocolate)}
+@media(max-width:700px){.lab-callout{flex-direction:column;align-items:flex-start;gap:19px;padding:30px 6%}.lab-callout h2{font-size:25px}.lab-callout p{font-size:11px}.lab-callout .button{min-height:46px}footer{padding-bottom:15px}.site-credit{padding-bottom:95px}}
 @media(max-width:700px){.header .brand{width:175px;height:58px}.catalog.section{padding-top:30px}.section-heading h1{font-size:36px}footer{gap:10px}.footer-mark{width:65px;height:65px}}
