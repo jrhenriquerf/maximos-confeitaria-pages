@@ -1,0 +1,17 @@
+{
+  "settings": { "whatsappNumber": "5514998440207", "instagramUrl": "https://www.instagram.com/confeitaria.maximos/", "siteUrl": "", "showPrices": false },
+  "products": [
+    { "id": "brownie-supreme", "name": "Brownie Supreme", "category": "Brownies", "description": "Brownie artesanal com apresentação premium.", "image": "brownie-supreme.webp", "priceCents": null, "availability": "consultar", "active": true, "featured": true, "variants": [] },
+    { "id": "bombom-uva", "name": "Bombom de Uva no Pote", "category": "No pote", "description": "Uvas, creme e cobertura de chocolate. Uma combinação para saborear de colher.", "image": "bombom-uva.webp", "priceCents": null, "availability": "consultar", "active": true, "featured": true, "variants": [] },
+    { "id": "brownie-pote", "name": "Brownie no Pote", "category": "No pote", "description": "Camadas de brownie e creme, em duas opções de sabor.", "image": "brownie-branco.webp", "priceCents": null, "availability": "consultar", "active": true, "variants": [
+      { "id": "branco", "name": "Brigadeiro branco", "image": "brownie-branco.webp", "priceCents": null },
+      { "id": "kinder", "name": "Com Kinder Bueno", "image": "brownie-kinder.webp", "priceCents": null }
+    ] },
+    { "id": "brigadeirao", "name": "Brigadeirão", "category": "Clássicos", "description": "Uma sobremesa de chocolate para deixar o dia mais doce.", "image": "brigadeirao.webp", "priceCents": null, "availability": "consultar", "active": true, "variants": [] },
+    { "id": "brownie-cream", "name": "Brownie & Cream", "category": "Brownies", "description": "Brownie com creme à parte. Consulte as opções disponíveis.", "image": "brownie-cream.webp", "priceCents": null, "availability": "consultar", "active": true, "variants": [] },
+    { "id": "cenoura", "name": "Bolo de Cenoura no Pote", "category": "No pote", "description": "Bolo de cenoura em camadas, na apresentação de pote.", "image": "cenoura.webp", "priceCents": null, "availability": "consultar", "active": true, "variants": [] },
+    { "id": "brownie-recheio", "name": "Brownie com Recheio", "category": "Brownies", "description": "Brownie artesanal com opções de recheio a consultar.", "image": null, "priceCents": null, "availability": "consultar", "active": true, "variants": [] },
+    { "id": "torta-oreo", "name": "Torta de Oreo com Ganache", "category": "Tortas", "description": "Uma das opções da nossa seleção de tortas artesanais.", "image": null, "priceCents": null, "availability": "consultar", "active": true, "variants": [] },
+    { "id": "torta-maracuja", "name": "Torta de Maracujá Trufado", "category": "Tortas", "description": "Uma das opções da nossa seleção de tortas artesanais.", "image": null, "priceCents": null, "availability": "consultar", "active": true, "variants": [] }
+  ]
+}
