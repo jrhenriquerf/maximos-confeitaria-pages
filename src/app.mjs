@@ -25,7 +25,7 @@ function renderProducts() {
   $('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'doce para descobrir' : 'doces para descobrir'}`;
   document.querySelectorAll('[data-filter]').forEach(b => { b.classList.toggle('active', b.dataset.filter === category); b.setAttribute('aria-pressed', String(b.dataset.filter === category)); });
 }
-function imageMarkup(p, image) { return image ? `<img class="detail-photo" src="/images/${escape(image)}" alt="${escape(p.name)}" width="960" height="1440">` : '<div class="detail-photo photo-pending"><img src="/images/mini.webp" alt=""><span>Fotografia em breve</span></div>'; }
+function imageMarkup(p, image) { return image ? `<img class="detail-photo" src="/images/${escape(image)}" alt="${escape(p.name)}" width="960" height="1440">` : '<div class="detail-photo photo-pending"><img src="/images/mini-transparent.webp" alt=""><span>Fotografia em breve</span></div>'; }
 function showProduct(id, changeUrl = true) {
   const p = products.find(p => p.id === id);
   if (!p) return;

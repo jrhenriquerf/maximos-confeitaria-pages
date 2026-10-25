@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { restoreCart, orderSummary, orderMessage, whatsappUrl, productCard } from '../src/core.mjs';
 const products = [
   { id: 'brownie', name: 'Brownie', active: true, availability: 'encomenda', priceCents: 1234, variants: [] },
@@ -45,4 +46,18 @@ test('WhatsApp ausente ou malformado não produz link; mensagem é codificada', 
   const result = whatsappUrl('5511999999999', 'Olá!\n2x Brownie & Cream');
   assert.equal(new URL(result).searchParams.get('text'), 'Olá!\n2x Brownie & Cream');
   assert.equal(new URL(result).hostname, 'wa.me');
+});
+
+test('sacolas antigas mantêm Branco e Kinder ao separar os cards', async () => {
+  const { products } = JSON.parse(await readFile(new URL('../data/catalog.json', import.meta.url), 'utf8'));
+  const cart = restoreCart([
+    { id: 'brownie-pote', variantId: 'branco', quantity: 2 },
+    { id: 'brownie-pote', variantId: 'kinder', quantity: 3 },
+    { id: 'brownie-pote-kinder', variantId: '', quantity: 1 }
+  ], products);
+  assert.deepEqual(cart, [
+    { id: 'brownie-pote', variantId: '', quantity: 2 },
+    { id: 'brownie-pote-kinder', variantId: '', quantity: 4 }
+  ]);
+  assert.match(orderMessage(cart, products, '', false), /4x Brownie no Pote com Kinder Bueno/);
 });

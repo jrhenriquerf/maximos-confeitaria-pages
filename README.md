@@ -18,8 +18,8 @@ Abra http://127.0.0.1:4173. O servidor lê `dist/`; após editar dados ou códig
 ## Entrega
 
 - Identidade em creme, chocolate e terracota, utilizando os dois logos enviados.
-- Sete imagens de produtos otimizadas em WebP; fotos originais preservadas nas suas localizações. Sem imagens geradas e sem alteração da aparência dos produtos.
-- Nove produtos, com duas variações do Brownie no Pote. Brownie com Recheio e tortas exibem indicação de fotografia pendente.
+- Dez imagens de produtos fornecidas pela marca, otimizadas em WebP sem alterar a aparência dos doces. Logos com transparência real no cabeçalho, rodapé e indicação de fotografia pendente.
+- Entrada direta no catálogo, com onze produtos. Brownies no Pote de Brigadeiro Branco, Kinder Bueno e Brigadeiro 50% aparecem em cards separados. Tortas de Oreo e Maracujá com Ganache possuem fotos. Somente Brownie com Recheio aguarda fotografia.
 - Busca por nome, descrição e sabor; filtros; detalhes em modal com escolha de sabor e quantidade.
 - Sacola persistente no navegador, remoção e quantidades de 1 a 99. Nesta versão, preços e totais ficam ocultos por decisão comercial.
 - WhatsApp (14) 99844-0207 e Instagram @confeitaria.maximos configurados. A mensagem inclui produtos, sabores e quantidades e solicita os valores. Não há envio automático nem confirmação automática de pedido.
@@ -73,6 +73,6 @@ Referências oficiais: [integração Git](https://developers.cloudflare.com/page
 
 ## Integração e pendências
 
-Veja [integração futura](docs/integracao.md). A edição no JSON é a administração provisória; **não é um painel conectado**. A integração administrativa depende da identificação do repositório e banco atuais. O repositório informado estava vazio e não contém o sistema administrativo. Falta identificar sua base atual para integração. Disponibilidade, prazos, fotos das tortas e do brownie recheado e descrições comerciais ainda podem ser refinados. A ausência de preços é intencional, não uma pendência de publicação.
+Veja [integração futura](docs/integracao.md). A edição no JSON é a administração provisória; **não é um painel conectado**. A integração administrativa depende da identificação do repositório e banco atuais. O repositório informado estava vazio e não contém o sistema administrativo. Falta identificar sua base atual para integração. Disponibilidade, prazos, foto do brownie recheado e descrições comerciais ainda podem ser refinados. A ausência de preços é intencional, não uma pendência de publicação.
 
 Antes de divulgar: conferir esses dados, validar uma conversa real no WhatsApp configurado, conferir o build no Cloudflare e testar a prévia do link em WhatsApp/Instagram. Não houve envio de mensagens nesta validação.

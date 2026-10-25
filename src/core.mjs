@@ -9,7 +9,11 @@ export function selection(product, variantId = '') {
 export function restoreCart(raw, products) {
   if (!Array.isArray(raw)) return [];
   const result = [];
-  for (const row of raw.slice(0, 100)) {
+  for (const storedRow of raw.slice(0, 100)) {
+    // Preserva as escolhas da versão que agrupava Branco e Kinder como variações.
+    const row = storedRow?.id === 'brownie-pote' && ['branco', 'kinder'].includes(storedRow.variantId)
+      ? { ...storedRow, id: storedRow.variantId === 'kinder' ? 'brownie-pote-kinder' : 'brownie-pote', variantId: '' }
+      : storedRow;
     const p = products.find(p => p.id === row?.id && p.active && p.availability !== 'indisponivel');
     if (!p || !selection(p, row.variantId || '') || !Number.isInteger(row.quantity) || row.quantity < 1) continue;
     const variantId = row.variantId || '';
@@ -32,5 +36,5 @@ export function whatsappUrl(number, message) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 export function productCard(p, showPrices = true) {
-  return `<article class="product-card"><a class="product-photo ${p.image ? '' : 'photo-pending'}" href="/produtos/${escape(p.id)}/" data-product="${escape(p.id)}">${p.image ? `<img src="/images/${escape(p.image)}" alt="${escape(p.name)}" width="960" height="1440" loading="lazy" decoding="async">` : '<img src="/images/mini.webp" alt="" loading="lazy"><span>Fotografia em breve</span>'}${p.featured ? '<span class="photo-label">Seleção Maximos</span>' : ''}<span class="photo-open" aria-hidden="true">↗</span></a><div class="product-body"><p class="eyebrow">${escape(p.category)}${p.variants.length ? ` <span>· ${p.variants.length} sabores</span>` : ''}</p><h3><a href="/produtos/${escape(p.id)}/" data-product="${escape(p.id)}">${escape(p.name)}</a></h3><p class="description">${escape(p.description)}</p><p class="stock">${availability[p.availability]}</p><div class="product-bottom"><span>${p.variants.length ? 'Escolher sabor' : showPrices ? money(p.priceCents) : 'Adicionar à sacola'}</span><button class="add-circle" data-${p.variants.length ? 'product' : 'add'}="${escape(p.id)}" aria-label="${p.variants.length ? 'Escolher sabor de' : 'Adicionar'} ${escape(p.name)}" ${p.availability === 'indisponivel' ? 'disabled' : ''}>+</button></div></div></article>`;
+  return `<article class="product-card"><a class="product-photo ${p.image ? '' : 'photo-pending'}" href="/produtos/${escape(p.id)}/" data-product="${escape(p.id)}">${p.image ? `<img src="/images/${escape(p.image)}" alt="${escape(p.name)}" width="960" height="1440" loading="lazy" decoding="async">` : '<img src="/images/mini-transparent.webp" alt="" loading="lazy"><span>Fotografia em breve</span>'}${p.featured ? '<span class="photo-label">Seleção Maximos</span>' : ''}<span class="photo-open" aria-hidden="true">↗</span></a><div class="product-body"><p class="eyebrow">${escape(p.category)}${p.variants.length ? ` <span>· ${p.variants.length} sabores</span>` : ''}</p><h3><a href="/produtos/${escape(p.id)}/" data-product="${escape(p.id)}">${escape(p.name)}</a></h3><p class="description">${escape(p.description)}</p><p class="stock">${availability[p.availability]}</p><div class="product-bottom"><span>${p.variants.length ? 'Escolher sabor' : showPrices ? money(p.priceCents) : 'Adicionar à sacola'}</span><button class="add-circle" data-${p.variants.length ? 'product' : 'add'}="${escape(p.id)}" aria-label="${p.variants.length ? 'Escolher sabor de' : 'Adicionar'} ${escape(p.name)}" ${p.availability === 'indisponivel' ? 'disabled' : ''}>+</button></div></div></article>`;
 }
