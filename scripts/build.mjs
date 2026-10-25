@@ -35,20 +35,21 @@ for (const p of source.products) {
 const configured = source.settings || {};
 const whatsappNumber = process.env.PUBLIC_WHATSAPP_NUMBER ?? configured.whatsappNumber ?? '';
 const instagramUrl = process.env.PUBLIC_INSTAGRAM_URL ?? configured.instagramUrl ?? '';
-const siteUrl = (process.env.PUBLIC_SITE_URL || process.env.CF_PAGES_URL || configured.siteUrl || '').replace(/\/$/, '');
+const siteUrl = (process.env.PUBLIC_SITE_URL || configured.siteUrl || process.env.CF_PAGES_URL || '').replace(/\/$/, '');
 if (whatsappNumber && !/^[1-9]\d{9,14}$/.test(whatsappNumber)) fail('WhatsApp deve conter código do país e apenas dígitos');
 if (instagramUrl && !/^https:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9_.]+\/?$/.test(instagramUrl)) fail('URL do Instagram');
 if (siteUrl) { const url = new URL(siteUrl); if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || url.pathname !== '/') fail('URL pública deve ser uma origem HTTPS'); }
 const showPrices = configured.showPrices !== false;
 const settings = { whatsappNumber, instagramUrl, siteUrl, showPrices };
 const template = await readFile(resolve(root, 'src/index.html'), 'utf8');
-const description = 'Conheça os doces artesanais da Maximos Confeitaria. Explore o catálogo, escolha seus favoritos e monte sua encomenda.';
+const description = 'Brownies, doces no pote e tortas artesanais. Escolha seus favoritos e faça sua encomenda pelo WhatsApp.';
 const serialized = JSON.stringify({ settings, products }).replace(/</g, '\\u003c');
 function page(product) {
   const path = product ? `/produtos/${product.id}/` : '/';
-  const title = product ? `${product.name} | Maximos Confeitaria` : 'Maximos Confeitaria | Doces para os seus momentos';
-  const replacements = { __TITLE__: escape(title), __DESCRIPTION__: escape(product?.description || description), __OG_IMAGE__: escape(`${siteUrl}/images/${product?.image || 'logo.webp'}`), __CANONICAL__: siteUrl ? `<link rel="canonical" href="${escape(siteUrl + path)}"><meta property="og:url" content="${escape(siteUrl + path)}">` : '', __PRODUCTS__: products.map(p => productCard(p, showPrices)).join(''), __DATA__: serialized };
-  return template.replace(/__TITLE__|__DESCRIPTION__|__OG_IMAGE__|__CANONICAL__|__PRODUCTS__|__DATA__/g, key => replacements[key]);
+  const title = product ? `${product.name} | Maximos Confeitaria` : 'Maximos Confeitaria | Catálogo de doces artesanais';
+  const ogImage = `${siteUrl}/images/${product?.image || 'compartilhar-catalogo-v1.jpg'}`;
+  const replacements = { __TITLE__: escape(title), __DESCRIPTION__: escape(product?.description || description), __OG_IMAGE__: escape(ogImage), __OG_IMAGE_TYPE__: product?.image ? 'image/webp' : 'image/jpeg', __OG_WIDTH__: product?.image ? '960' : '1200', __OG_HEIGHT__: product?.image ? '1440' : '630', __OG_ALT__: escape(product?.name || 'Maximos Confeitaria — catálogo de doces artesanais'), __CANONICAL__: siteUrl ? `<link rel="canonical" href="${escape(siteUrl + path)}"><meta property="og:url" content="${escape(siteUrl + path)}">` : '', __PRODUCTS__: products.map(p => productCard(p, showPrices)).join(''), __DATA__: serialized };
+  return template.replace(/__[A-Z_]+__/g, key => replacements[key] ?? key);
 }
 // Apenas a saída gerada deste módulo é substituída.
 await rm(dist, { recursive: true, force: true }); await mkdir(dist, { recursive: true });
