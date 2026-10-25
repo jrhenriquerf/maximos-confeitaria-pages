@@ -47,7 +47,7 @@ const serialized = JSON.stringify({ settings, products }).replace(/</g, '\\u003c
 function page(product) {
   const path = product ? `/produtos/${product.id}/` : '/';
   const title = product ? `${product.name} | Maximos Confeitaria` : 'Maximos Confeitaria | Catálogo de doces artesanais';
-  const ogImage = `${siteUrl}/images/${product?.image || 'compartilhar-catalogo-v1.jpg'}`;
+  const ogImage = `${siteUrl}/images/${product?.image || 'compartilhar-catalogo-v2.jpg'}`;
   const replacements = { __TITLE__: escape(title), __DESCRIPTION__: escape(product?.description || description), __OG_IMAGE__: escape(ogImage), __OG_IMAGE_TYPE__: product?.image ? 'image/webp' : 'image/jpeg', __OG_WIDTH__: product?.image ? '960' : '1200', __OG_HEIGHT__: product?.image ? '1440' : '630', __OG_ALT__: escape(product?.name || 'Maximos Confeitaria — catálogo de doces artesanais'), __CANONICAL__: siteUrl ? `<link rel="canonical" href="${escape(siteUrl + path)}"><meta property="og:url" content="${escape(siteUrl + path)}">` : '', __PRODUCTS__: products.map(p => productCard(p, showPrices)).join(''), __DATA__: serialized };
   return template.replace(/__[A-Z_]+__/g, key => replacements[key] ?? key);
 }
