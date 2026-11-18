@@ -3,7 +3,8 @@
     "whatsappNumber": "5514998440207",
     "instagramUrl": "https://www.instagram.com/confeitaria.maximos/",
     "siteUrl": "https://maximos-confeitaria-catalogo.pages.dev",
-    "showPrices": false
+    "showPrices": false,
+    "feedbackEndpoint": "https://qpoogxydwbcwufnhewyt.supabase.co/functions/v1/feedback"
   },
   "products": [
     {

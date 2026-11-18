@@ -56,6 +56,23 @@ await rm(dist, { recursive: true, force: true }); await mkdir(dist, { recursive:
 await cp(resolve(root, 'public'), dist, { recursive: true });
 for (const name of ['app.mjs', 'core.mjs', 'styles.css']) await cp(resolve(root, 'src', name), resolve(dist, name));
 await writeFile(resolve(dist, 'index.html'), page());
+const feedbackEndpoint = process.env.PUBLIC_FEEDBACK_URL || configured.feedbackEndpoint || '';
+let feedbackOrigin = '';
+if (feedbackEndpoint) {
+  const endpoint = new URL(feedbackEndpoint);
+  if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || !endpoint.hostname.endsWith('.supabase.co') || endpoint.pathname !== '/functions/v1/feedback') fail('endpoint de feedback');
+  feedbackOrigin = endpoint.origin;
+}
+const feedbackTemplate = await readFile(resolve(root, 'src/feedback.html'), 'utf8');
+const feedbackPage = feedbackTemplate
+  .replace('__STARS__', [1,2,3,4,5].map(n => `<label><input type="radio" name="rating" value="${n}" required aria-label="${n} ${n===1?'estrela':'estrelas'}"><span aria-hidden="true">★<small>${n}</small></span></label>`).join(''))
+  .replace('__PRODUCT_OPTIONS__', products.map(p=>`<option value="${escape(p.name)}">${escape(p.name)}</option>`).join(''))
+  .replace('__FEEDBACK_CONFIG__', JSON.stringify({endpoint:feedbackEndpoint,whatsappNumber}).replace(/</g,'\\u003c'));
+await mkdir(resolve(dist,'avaliar'),{recursive:true});
+await writeFile(resolve(dist,'avaliar/index.html'),feedbackPage);
+for (const name of ['feedback.css','feedback.mjs']) await cp(resolve(root,'src',name),resolve(dist,name));
+const headers = await readFile(resolve(dist,'_headers'),'utf8');
+await writeFile(resolve(dist,'_headers'),headers.replace("connect-src 'self'",`connect-src 'self'${feedbackOrigin?' '+feedbackOrigin:''}`));
 for (const product of products) {
   const folder = resolve(dist, 'produtos', product.id); await mkdir(folder, { recursive: true });
   await writeFile(resolve(folder, 'index.html'), page(product));
