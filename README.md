@@ -1,6 +1,6 @@
 # Maximos Confeitaria — catálogo digital
 
-Catálogo estático da Maximos Confeitaria, preparado para GitHub + Cloudflare Pages, sem domínio próprio. A integração com o sistema administrativo é uma etapa futura.
+Catálogo estático da Maximos Confeitaria, preparado para GitHub + Cloudflare Pages, sem domínio próprio. A coleta em `/avaliar/` se integra ao módulo Feedbacks do sistema via Supabase Edge Function. A sincronização dos produtos com o sistema administrativo continua como etapa futura.
 
 ## Executar
 
@@ -24,7 +24,7 @@ Abra http://127.0.0.1:4173. O servidor lê `dist/`; após editar dados ou códig
 - Sacola persistente no navegador, remoção e quantidades de 1 a 99. Nesta versão, preços e totais ficam ocultos por decisão comercial.
 - WhatsApp (14) 99844-0207 e Instagram @confeitaria.maximos configurados. A mensagem inclui produtos, sabores e quantidades e solicita os valores. Não há envio automático nem confirmação automática de pedido.
 - Rotas estáticas individuais em `/produtos/<id>/`, metadados por produto, canonical e sitemap quando há URL pública.
-- Nenhuma conexão com banco, endpoint administrativo ou segredo no catálogo.
+- Coleta de avaliações com autorização opcional de divulgação em `/avaliar/`, via endpoint público protegido. Sem acesso direto ao banco, endpoint administrativo ou segredo no catálogo.
 
 ## Editar preços, fotos e disponibilidade
 
@@ -70,6 +70,10 @@ Variáveis de ambiente têm precedência sobre os campos correspondentes. `CF_PA
 Não é necessário workflow de Actions, Wrangler, Functions, Workers, banco ou assinatura adicional para esta versão. O plano gratuito fica sujeito aos limites e condições do provedor; esta entrega não contratou serviços.
 
 Referências oficiais: [integração Git](https://developers.cloudflare.com/pages/get-started/git-integration/), [HTML estático](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/), [limites](https://developers.cloudflare.com/pages/platform/limits/).
+
+## Feedbacks
+
+Veja [coleta de feedbacks](docs/feedbacks.md) para configurar o endpoint, ativar o backend e identificar origens dos links. O painel administrativo oferece moderação e artes para Instagram.
 
 ## Integração e pendências
 
